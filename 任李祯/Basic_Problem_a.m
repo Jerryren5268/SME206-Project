@@ -20,10 +20,10 @@ end
 
 %mixer then fft
 mix=zeros(Nd,Nr);
-mix_ffted=zeros(Nd,40960);
+mix_ffted=zeros(Nd,4096);
 for i=1:Nd
     mix(i,:)=s.*x1_matrix(i,:);
     mix_ffted(i,:)=fftshift(abs(fft(mix(i,:),4096)));
 end
-
-plot(mix_ffted(4,:));
+omega=linspace(-pi,pi,4096);
+plot(omega,mix_ffted(1,:));
