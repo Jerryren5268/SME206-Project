@@ -14,11 +14,11 @@ for i=1:Nd
     x1_matrix(i,:)=x1(Nr*i-Nr+1:Nr*i);
 end
 
-f=(1:1024)*Fs/1024;
+f=(0:1023)*Fs/1024;
 x1_ffted_matrix=zeros(Nd,Nr);
 fm=zeros(Nd,1);
 
-%find omega
+%find fm
 for i=1:Nd
     x1_ffted_matrix(i,:)=abs(fft(x1_matrix(i,:)));
     [~,idx]=max(x1_ffted_matrix(i,1:513));
@@ -26,7 +26,6 @@ for i=1:Nd
 end
 
 %find distance
-
 dis=zeros(Nd,1);
 dis=c.*fm/(2*K);
 dis
