@@ -13,12 +13,12 @@ x2_matrix=zeros(Nd,Nr);
 x2_matrix_rowffted=zeros(Nd,Nr);
 x2_matrix_rowcolffted=zeros(Nd,Nr);
 for i=1:Nd
-    x2_matrix(i,:)=x2(Nr*i-Nr+1:Nr*i);
+    x2_matrix(i,:)=x1(Nr*i-Nr+1:Nr*i);
 end
 
 %row fft 
 for i=1:Nd
-    x2_matrix_rowffted(i,:)=fftshift((fft(x2_matrix(i,:))));
+    x2_matrix_rowffted(i,:)=fftshift(abs(fft(x2_matrix(i,:))));
 end
 
 %column fft
@@ -31,14 +31,17 @@ dis_max=c*Fs/(4*K);
 x = linspace(-dis_max,dis_max,Nr);
 
 % y : velocity
-v_max=c/(4*fc*Tchirp);
+v_max=c/(2*fc*Tchirp);
 y = linspace(-v_max,v_max,Nd);
-
+dis=c.*fm/(2*K);
+ v(i,1)=c*delta_phase(i,1)/(4*pi*fc*Tchirp);
 % »­ 3D surface
 figure;
-surf(x, y, x2_matrix_rowcolffted, 'EdgeColor', 'none');
+surf(x, y, x1_matrix_rowcolffted, 'EdgeColor', 'none');
 xlabel('Distance m');
 ylabel('velocity m/s');
 zlabel('Magnitude');
 title('2D FFT Magnitude of x2');
 colorbar;
+
+
