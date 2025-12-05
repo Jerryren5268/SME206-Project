@@ -1,3 +1,4 @@
+load fmcw_basic_b.mat
 f_c=77*10^9;
 c=3*10^8;
 B=150*10^6;

@@ -33,7 +33,11 @@ end
 %find delta_phase&velocity
 delta_phase=zeros(Nd-1,1);
 v=zeros(Nd-1,1);
+phase=unwrap(phase);
 for i=1:Nd-1
     delta_phase(i,1)=phase(i+1)-phase(i);
-    v(i,1)=c*delta_phase(i,1)/(4*pi*Tchirp*fm(i,1));
+    v(i,1)=c*delta_phase(i,1)/(4*pi*fc*Tchirp);
 end
+%find distance
+dis=zeros(Nd,1);
+dis=c.*fm/(2*K);
